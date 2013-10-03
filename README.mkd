@@ -1,0 +1,29 @@
+# PID
+
+A simple c PID library for interfacing with arduinos. For further discussion on PID algorithms and control see [wikipedia](http://en.wikipedia.org/wiki/PID_controller).
+
+# Usage
+
+```c
+PID *pid;
+
+void setup() {
+  input = analogRead(0);
+  pid = PID_create(
+    analogRead(0), // current input
+    100,           // setpoint (desired output)
+    300,           // sample time in ms
+    0,             // min output
+    250            // max output
+    2,             // Kp
+    5,             // Ki
+    1              // Kd
+  )
+}
+
+void loop() {
+  if (PID_should_compute(pid)) {
+    analogWrite(3, PID_next(pid, analogRead(0)));
+  }
+}
+```
