@@ -20,7 +20,7 @@ PID *PID_create(
     double Ki,
     double Kd
 ) {
-  PID *pid = calloc(1, sizeof(PID));
+  PID *pid = (PID *)calloc(1, sizeof(PID));
 
   check_mem(pid);
 

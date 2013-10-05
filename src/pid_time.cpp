@@ -1,6 +1,8 @@
 #include "pid_time.h"
 
-#if defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
+#if defined(ARDUINO)
+#include <Arduino.h>
+#elif defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
 #include <sys/time.h>
 #endif
  
