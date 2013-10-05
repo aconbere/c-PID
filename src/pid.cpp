@@ -1,5 +1,8 @@
+#include "dbg.h"
 #include "pid.h"
 #include "pid_time.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 // PV - process value (sensed value)
 // SP - setpoint (desired value)
@@ -38,12 +41,12 @@ error:
   return NULL;
 }
 
-bool PID_should_compute(PID *pid) {
+bool_t PID_should_compute(PID *pid) {
   // constrain compute to a fixed time interval
   if (getCurrentMilliseconds() - pid->last_computed < pid->sample_time) {
-    return false;
+    return false_t;
   }
-  return true;
+  return true_t;
 }
 
 double PID_clamp_output(PID *pid, double output) {

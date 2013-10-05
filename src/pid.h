@@ -1,12 +1,8 @@
 #ifndef PID_h
 #define PID_h
 
-#include "dbg.h"
-#include <stdlib.h>
-#include <stdio.h>
-
-typedef int bool;
-enum { false, true };
+typedef int bool_t;
+enum { false_t, true_t };
 
 typedef struct PID {
   unsigned long last_computed;
@@ -31,7 +27,6 @@ typedef struct PID {
 // Kd - Derivative tuning parameter
 
 PID *PID_create(
-    double current_output,
     double current_input,
     double setpoint,
     double out_min,
@@ -43,7 +38,7 @@ PID *PID_create(
 );
 
 void PID_tune(PID *pid, double Kp, double Ki, double Kd);
-bool PID_should_compute(PID *pid);
+bool_t PID_should_compute(PID *pid);
 double PID_clamp_output(PID *pid, double output);
 double PID_next(PID *pid, double process_value);
 
